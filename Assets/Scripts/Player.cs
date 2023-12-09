@@ -5,8 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour
 {
-    public int score = 0;
     public float speed = 4.0f;
+    public int keys;
     Rigidbody2D rb;
 
 
