@@ -9,6 +9,7 @@ TagManager:
   - ExtraBombs
   - ExplosionRadius
   - Speedup
+  - key
   layers:
   - Default
   - TransparentFX

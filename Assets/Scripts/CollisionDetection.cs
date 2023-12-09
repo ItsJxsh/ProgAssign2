@@ -11,27 +11,9 @@ public class CollisionDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Explosion"))
-        {
-            gameObject.GetComponent<Player>().Health--;
-        }
-        if (collision.CompareTag("ExtraBombs"))
-        {
-            gameObject.GetComponent<Player>().AddBomb();
-            gameObject.GetComponent<Player>().score += 500;
-            Debug.Log("Gained 500 Points! Current Score:" + gameObject.GetComponent<Player>().score);
-            Destroy(collision.gameObject);
-        }
-        if (collision.CompareTag("ExplosionRadius"))
-        {
-            gameObject.GetComponent<Player>().AddRadius();
-            gameObject.GetComponent<Player>().score += 500;
-            Debug.Log("Gained 500 Points! Current Score:" + gameObject.GetComponent<Player>().score);
-            Destroy(collision.gameObject);
-        }
         if (collision.CompareTag("Speedup"))
         {
-            gameObject.GetComponent<Player>().AddSpeed();
+            gameObject.GetComponent<Player>().speed *= 2;
             gameObject.GetComponent<Player>().score += 500;
             Debug.Log("Gained 500 Points! Current Score:" + gameObject.GetComponent<Player>().score);
             Destroy(collision.gameObject);
