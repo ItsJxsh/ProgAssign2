@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,11 +10,14 @@ public class Player : MonoBehaviour
     public float speed = 4.0f;
     public int keys;
     Rigidbody2D rb;
+    public List<string> items = new List<string>();
+    public int itemscollected;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
     }
 
 
@@ -55,6 +60,7 @@ public class Player : MonoBehaviour
 
         Vector2 direction = new Vector2(xDir, yDir).normalized;
         rb.velocity = direction * speed;
+        Debug.Log(items[0]);
     }
-
+    
 }

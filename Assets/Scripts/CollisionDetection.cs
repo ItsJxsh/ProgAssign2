@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+
 
 // Note the difference between collision vs trigger:
 // Collision does a physics-based collision resulting in Unity preventing the two objects from overlapping.
@@ -16,20 +18,23 @@ public class CollisionDetection : MonoBehaviour
         if (collision.CompareTag("Speedup"))
         {
             gameObject.GetComponent<Player>().speed *= 2;
+            gameObject.GetComponent<Player>().items.Add("Speedup");
             Debug.Log("Your speed Doubled!");
+            gameObject.GetComponent<Player>().itemscollected++;
             Destroy(collision.gameObject);
         }
 
         if (collision.CompareTag("key"))
         {
-            gameObject.GetComponent<Player>().keys ++;
             Debug.Log("Your Gained A Key!");
+            gameObject.GetComponent<Player>().items.Add("Key");
             Destroy(collision.gameObject);
+            gameObject.GetComponent<Player>().itemscollected++;
         }
 
-        if (collision.CompareTag("Boxes") && gameObject.GetComponent<Player>().keys != 0)
+        if (collision.CompareTag("Boxes") && gameObject.GetComponent<Player>().items.Contains("Key"))
         {
-            gameObject.GetComponent<Player>().keys--;
+            gameObject.GetComponent<Player>().items.Remove("Key");
             Debug.Log("Your Unlocked the Door!");
             Destroy(collision.gameObject);
         }
