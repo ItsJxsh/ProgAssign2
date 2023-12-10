@@ -12,6 +12,7 @@ using UnityEngine.UIElements;
 public class CollisionDetection : MonoBehaviour
 {
     public Tilemap tilemap;
+    public GameObject timer;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -37,6 +38,13 @@ public class CollisionDetection : MonoBehaviour
             gameObject.GetComponent<Player>().items.Remove("Key");
             gameObject.GetComponent<Player>().items.Add("UsedKey");
             Debug.Log("Your Unlocked the Door!");
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.CompareTag("Finish"))
+        {
+            
+            timer.GetComponent<timer>().gameActive = false;
             Destroy(collision.gameObject);
         }
     }
